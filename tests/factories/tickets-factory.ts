@@ -1,7 +1,10 @@
+//factory
+
 import faker from '@faker-js/faker';
 import { TicketStatus } from '@prisma/client';
 import { prisma } from '@/config';
 
+// Cria um ticketType genérico
 export async function createTicketType() {
   return prisma.ticketType.create({
     data: {
@@ -13,6 +16,7 @@ export async function createTicketType() {
   });
 }
 
+// Cria um ticket para uma inscrição específica
 export async function createTicket(enrollmentId: number, ticketTypeId: number, status: TicketStatus) {
   return prisma.ticket.create({
     data: {

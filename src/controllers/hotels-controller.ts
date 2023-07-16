@@ -1,5 +1,4 @@
 // Controller
-
 import { AuthenticatedRequest } from "@/middlewares";
 import hotelsService from "@/services/hotels-service";
 import { Response } from "express";
@@ -40,7 +39,7 @@ const handleErrorResponse = (error: any, res: Response) => {
     // Dados não encontrados
     return res.sendStatus(httpStatus.NOT_FOUND);
   }
-  if (error.name === 'PaymentRequiredError') {
+  if (error.name === 'PaymentRequired') {
     // Pagamento necessário
     return res.sendStatus(httpStatus.PAYMENT_REQUIRED);
   }

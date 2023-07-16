@@ -8,6 +8,13 @@ export function handleApplicationErrors(
   res: Response,
   _next: NextFunction,
 ) {
+
+  if (err.name === 'PaymentRequired') {
+    return res.status(httpStatus.PAYMENT_REQUIRED).send({
+      message: err.message,
+    });
+  }
+  
   if (err.name === 'CannotEnrollBeforeStartDateError') {
     return res.status(httpStatus.BAD_REQUEST).send({
       message: err.message,
@@ -36,6 +43,8 @@ export function handleApplicationErrors(
     return res.status(httpStatus.NOT_FOUND).send({
       message: err.message,
     });
+
+    
   }
 
   /* eslint-disable-next-line no-console */
